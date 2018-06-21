@@ -15,10 +15,8 @@ exports.qrcode = function (req, res) {
   var secret = speakeasy.generateSecret({ length: 20 });
   qrcode.toDataURL(secret.otpauth_url, function(err, image_data) {
     if (err) {
-      console.log('Err', err);
-      return res.end();
+      return res.status(400).send({ message: 'Has error when convert Secret to QRCode' });
     }
-    console.log('Image', image_data);
     return res.jsonp(image_data);
   });
 };
