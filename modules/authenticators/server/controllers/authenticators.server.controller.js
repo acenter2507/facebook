@@ -26,9 +26,9 @@ exports.verify = function (req, res) {
   var verified = speakeasy.totp.verify({
     secret: secret,
     encoding: 'base32',
-    token: token
+    token: token,
+    window: 5
   });
-  console.log(verified);
   res.end();
 };
 exports.create = function (req, res) {

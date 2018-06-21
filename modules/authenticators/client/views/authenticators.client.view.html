@@ -9,6 +9,8 @@
       <div class="form-group">
         <input type="number" maxlength="6" minlength="6" class="form-control" ng-model="vm.token" placeholder="Token">
         <button class="btn btn-succes mg5t" ng-click="vm.handleVerifyToken()">コード認証</button>
+        <span class="fa fa-check" ng-show="vm.verified"></span>
+        <span class="fa fa-check" ng-show="!vm.verified"></span>
       </div>
     </div>
   </div>
