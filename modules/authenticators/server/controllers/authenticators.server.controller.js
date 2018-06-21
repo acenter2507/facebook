@@ -23,11 +23,10 @@ exports.qrcode = function (req, res) {
 exports.verify = function (req, res) {
   var secret = req.body.secret;
   var token = req.body.token;
-  var verified = speakeasy.totp.verify({
+  var verified = speakeasy.time.verify({
     secret: secret,
     encoding: 'base32',
-    token: token,
-    window: 5
+    token: token
   });
   return res.jsonp(verified);
 };

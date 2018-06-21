@@ -11,7 +11,7 @@
       <span>Timer: {{ vm.timer }}</span>
       <hr>
       <div class="form-group">
-        <input type="text" class="form-control" ng-model="vm.token" placeholder="Token">
+        <input type="text" class="form-control" ng-model="vm.tokenValid" placeholder="Token">
         <button class="btn btn-succes mg5t" ng-click="vm.handleVerifyToken()">コード認証</button>
 
         <span ng-show="vm.verified">○</span>
