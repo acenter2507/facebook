@@ -5,12 +5,15 @@
  */
 var path = require('path'),
   mongoose = require('mongoose'),
+  speakeasy = require('speakeasy'),
+  qrcode = require('qrcode'),
   Authenticator = mongoose.model('Authenticator'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
 exports.qrcode = function (req, res) {
-  console.log('Requested');
+  var secret = speakeasy.generateSecret({ length: 20 });
+  console.log(secret.base32);
   res.end();
 };
 exports.create = function (req, res) {
