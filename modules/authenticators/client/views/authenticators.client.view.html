@@ -4,11 +4,11 @@
       <h3>One Time Password testing</h3>
       <button class="btn btn-primary" ng-click="vm.handleGetQRCode()">QRコード取得</button>
       <br>
-      <img src="{{ vm.qrcode }}">
+      <img src="{{ vm.qrcode }}" class="img-responsive mg5t">
       <hr>
       <div class="form-group">
         <input type="number" maxlength="6" minlength="6" class="form-control" ng-model="vm.token" placeholder="Token">
-        <button class="btn btn-succes" ng-click="vm.handleVerifyToken()">コード認証</button>
+        <button class="btn btn-succes mg5t" ng-click="vm.handleVerifyToken()">コード認証</button>
       </div>
     </div>
   </div>
