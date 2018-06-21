@@ -14,52 +14,11 @@
         url: '/authenticators',
         template: '<ui-view/>'
       })
-      .state('authenticators.list', {
+      .state('authenticators.home', {
         url: '',
-        templateUrl: 'modules/authenticators/client/views/list-authenticators.client.view.html',
-        controller: 'AuthenticatorsListController',
-        controllerAs: 'vm',
-        data: {
-          pageTitle: 'Authenticators List'
-        }
-      })
-      .state('authenticators.create', {
-        url: '/create',
-        templateUrl: 'modules/authenticators/client/views/form-authenticator.client.view.html',
+        templateUrl: 'modules/authenticators/client/views/authenticators.client.view.html',
         controller: 'AuthenticatorsController',
-        controllerAs: 'vm',
-        resolve: {
-          authenticatorResolve: newAuthenticator
-        },
-        data: {
-          roles: ['user', 'admin'],
-          pageTitle: 'Authenticators Create'
-        }
-      })
-      .state('authenticators.edit', {
-        url: '/:authenticatorId/edit',
-        templateUrl: 'modules/authenticators/client/views/form-authenticator.client.view.html',
-        controller: 'AuthenticatorsController',
-        controllerAs: 'vm',
-        resolve: {
-          authenticatorResolve: getAuthenticator
-        },
-        data: {
-          roles: ['user', 'admin'],
-          pageTitle: 'Edit Authenticator {{ authenticatorResolve.name }}'
-        }
-      })
-      .state('authenticators.view', {
-        url: '/:authenticatorId',
-        templateUrl: 'modules/authenticators/client/views/view-authenticator.client.view.html',
-        controller: 'AuthenticatorsController',
-        controllerAs: 'vm',
-        resolve: {
-          authenticatorResolve: getAuthenticator
-        },
-        data: {
-          pageTitle: 'Authenticator {{ authenticatorResolve.name }}'
-        }
+        controllerAs: 'vm'
       });
   }
 
