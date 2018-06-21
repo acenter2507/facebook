@@ -29,7 +29,7 @@ exports.verify = function (req, res) {
     token: token,
     window: 5
   });
-  res.end();
+  return res.jsonp(verified);
 };
 exports.create = function (req, res) {
   var authenticator = new Authenticator(req.body);

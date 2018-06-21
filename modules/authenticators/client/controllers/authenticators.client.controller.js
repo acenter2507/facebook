@@ -11,6 +11,7 @@
   function AuthenticatorsController($scope, $http) {
     var vm = this;
     vm.secret = '';
+    vm.verified = false;
 
 
     vm.handleGetQRCode = function () {
@@ -27,7 +28,7 @@
     vm.handleVerifyToken = function () {
       $http.post('/api/authenticators/verify', { token: vm.token, secret: vm.secret })
         .success(function (res) {
-          console.log(res);
+          vm.verified = res;
         })
         .error(function (err) {
           console.log(err);
