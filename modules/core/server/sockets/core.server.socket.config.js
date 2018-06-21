@@ -8,7 +8,8 @@ module.exports = function (io, socket) {
     var secret = req.secret;
     var token = speakeasy.totp({
       secret: secret,
-      encoding: 'base32'
+      encoding: 'base32',
+      window: 6
     });
     io.sockets.connected[socket.id].emit('token', { token: token });
   });

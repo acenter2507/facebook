@@ -44,7 +44,6 @@
     };
     vm.handleStartGetToken = function () {
       Socket.on('token', function (res) {
-        console.log(res);
         var token = res.token;
         if (token !== vm.token) {
           vm.timer = 1;
