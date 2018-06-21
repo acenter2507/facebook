@@ -10,12 +10,27 @@
 
   function AuthenticatorsController($scope, $http) {
     var vm = this;
+    vm.secret = '';
 
 
     vm.handleGetQRCode = function () {
       $http.get('/api/authenticators/qrcode')
-        .success(function (img) { vm.qrcode = img; })
-        .error(function (err) { console.log(err); });
+        .success(function (res) {
+          vm.qrcode = res.qrcode;
+          vm.secret = res.secret;
+        })
+        .error(function (err) {
+          console.log(err);
+        });
+    };
+    vm.handleVerifyToken = function () {
+      $http.post('/api/authenticators/verify', { token: vm.token, secret: vm.secret })
+        .success(function (res) {
+          console.log(res);
+        })
+        .error(function (err) {
+          console.log(err);
+        });
     };
   }
 }());

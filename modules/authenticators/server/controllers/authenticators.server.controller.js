@@ -13,12 +13,23 @@ var path = require('path'),
 
 exports.qrcode = function (req, res) {
   var secret = speakeasy.generateSecret({ length: 20 });
-  qrcode.toDataURL(secret.otpauth_url, function(err, image_data) {
+  qrcode.toDataURL(secret.otpauth_url, function (err, image_data) {
     if (err) {
       return res.status(400).send({ message: 'Has error when convert Secret to QRCode' });
     }
-    return res.jsonp(image_data);
+    return res.jsonp({ secret: secret.base32, qrcode: image_data });
   });
+};
+exports.verify = function (req, res) {
+  var secret = req.body.secret;
+  var token = req.body.token;
+  var verified = speakeasy.totp.verify({
+    secret: secret,
+    encoding: 'base32',
+    token: token
+  });
+  console.log(verified);
+  res.end();
 };
 exports.create = function (req, res) {
   var authenticator = new Authenticator(req.body);

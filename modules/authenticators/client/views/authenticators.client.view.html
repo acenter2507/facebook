@@ -3,8 +3,13 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h3>One Time Password testing</h3>
       <button class="btn btn-primary" ng-click="vm.handleGetQRCode()">QRコード取得</button>
+      <br>
       <img src="{{ vm.qrcode }}">
       <hr>
+      <div class="form-group">
+        <input type="number" maxlength="6" minlength="6" class="form-control" ng-model="vm.token" placeholder="Token">
+        <button class="btn btn-succes" ng-click="vm.handleVerifyToken()">コード認証</button>
+      </div>
     </div>
   </div>
 </div>
