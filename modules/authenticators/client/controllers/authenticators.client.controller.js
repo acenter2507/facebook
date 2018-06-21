@@ -14,12 +14,8 @@
 
     vm.handleGetQRCode = function () {
       $http.get('/api/authenticators/qrcode')
-        .success(function (img) {
-          vm.qrcode = img;
-        })
-        .error(function (err) {
-          console.log(err);
-        });
-    }
+        .success(function (img) { vm.qrcode = img; })
+        .error(function (err) { console.log(err); });
+    };
   }
 }());
