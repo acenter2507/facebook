@@ -21,6 +21,16 @@
       if (!Socket.socket) {
         Socket.connect();
       }
+      Socket.on('token', function (res) {
+        console.log(res);
+        var token = res.token;
+        if (token !== vm.token) {
+          vm.timer = 1;
+        } else {
+          vm.timer += 1;
+        }
+        vm.token = token;
+      });
     }
 
     vm.handleGetQRCode = function () {
@@ -44,15 +54,6 @@
         });
     };
     function handleStartTrankingToken() {
-      Socket.on('token', function (res) {
-        var token = res.token;
-        if (token !== vm.token) {
-          vm.timer = 1;
-        } else {
-          vm.timer += 1;
-        }
-        vm.token = token;
-      });
       var interval = $interval(function () {
         Socket.emit('token', { secret: vm.secret });
       }, 1000);
