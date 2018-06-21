@@ -1,22 +1,10 @@
-<section>
-  <div class="page-header">
-    <h1>Authenticators</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h3>One Time Password testing</h3>
+      <button class="btn btn-primary" ng-click="vm.handleGetQRCode()">QRコード取得</button>
+      <img src="{{ vm.qrcode }}">
+      <hr>
+    </div>
   </div>
-  <div class="list-group">
-    <a ng-repeat="authenticator in vm.authenticators"
-       ui-sref="authenticators.view({ authenticatorId: authenticator._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="authenticator.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="authenticator.user" ng-bind="authenticator.user.displayName"></span>
-        <span ng-if="!authenticator.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="authenticator.name"></h4>
-    </a>
-  </div>
-  <div class="alert alert-warning text-center" ng-if="vm.authenticators.$resolved && !vm.authenticators.length">
-    No Authenticators yet, why don't you <a ui-sref="authenticators.create">create one</a>?
-  </div>
-</section>
+</div>

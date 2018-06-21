@@ -21,18 +21,4 @@
         controllerAs: 'vm'
       });
   }
-
-  getAuthenticator.$inject = ['$stateParams', 'AuthenticatorsService'];
-
-  function getAuthenticator($stateParams, AuthenticatorsService) {
-    return AuthenticatorsService.get({
-      authenticatorId: $stateParams.authenticatorId
-    }).$promise;
-  }
-
-  newAuthenticator.$inject = ['AuthenticatorsService'];
-
-  function newAuthenticator(AuthenticatorsService) {
-    return new AuthenticatorsService();
-  }
 }());

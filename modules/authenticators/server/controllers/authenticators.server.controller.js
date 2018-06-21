@@ -9,14 +9,15 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
-/**
- * Create a Authenticator
- */
-exports.create = function(req, res) {
+exports.qrcode = function (req, res) {
+  console.log('Requested');
+  res.end();
+};
+exports.create = function (req, res) {
   var authenticator = new Authenticator(req.body);
   authenticator.user = req.user;
 
-  authenticator.save(function(err) {
+  authenticator.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -26,11 +27,7 @@ exports.create = function(req, res) {
     }
   });
 };
-
-/**
- * Show the current Authenticator
- */
-exports.read = function(req, res) {
+exports.read = function (req, res) {
   // convert mongoose document to JSON
   var authenticator = req.authenticator ? req.authenticator.toJSON() : {};
 
@@ -40,16 +37,12 @@ exports.read = function(req, res) {
 
   res.jsonp(authenticator);
 };
-
-/**
- * Update a Authenticator
- */
-exports.update = function(req, res) {
+exports.update = function (req, res) {
   var authenticator = req.authenticator;
 
   authenticator = _.extend(authenticator, req.body);
 
-  authenticator.save(function(err) {
+  authenticator.save(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -59,14 +52,10 @@ exports.update = function(req, res) {
     }
   });
 };
-
-/**
- * Delete an Authenticator
- */
-exports.delete = function(req, res) {
+exports.delete = function (req, res) {
   var authenticator = req.authenticator;
 
-  authenticator.remove(function(err) {
+  authenticator.remove(function (err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -76,12 +65,8 @@ exports.delete = function(req, res) {
     }
   });
 };
-
-/**
- * List of Authenticators
- */
-exports.list = function(req, res) {
-  Authenticator.find().sort('-created').populate('user', 'displayName').exec(function(err, authenticators) {
+exports.list = function (req, res) {
+  Authenticator.find().sort('-created').populate('user', 'displayName').exec(function (err, authenticators) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -91,11 +76,7 @@ exports.list = function(req, res) {
     }
   });
 };
-
-/**
- * Authenticator middleware
- */
-exports.authenticatorByID = function(req, res, next, id) {
+exports.authenticatorByID = function (req, res, next, id) {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
