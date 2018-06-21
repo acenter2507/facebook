@@ -11,9 +11,11 @@
         <img style="border: 1px solid #ccc;" src="{{ vm.qrcode }}" class="img-responsive">
       </div>
       <hr>
-      <h4>Token: {{ vm.token }}</h4>
-      <p>Secret code: {{ vm.secret }}</p>
-      <p>Timer: {{ vm.timer }}</p>
+      <div class="form-group" ng-show="vm.token && vm.token !== ''">
+        <h4>Token: {{ vm.token }}</h4>
+        <p>Secret code: {{ vm.secret }}</p>
+        <p>Timer: {{ vm.timer }}</p>
+      </div>
       <hr>
       <form class="form-inline">
         <div class="form-group">
