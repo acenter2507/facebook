@@ -25,19 +25,14 @@
 
     vm.handleGetQRCode = function () {
       Socket.on('token_get', function (res) {
+        if (res.error) {
+          return alert(res.error);
+        }
         vm.qrcode = res.qrcode;
         vm.secret = res.secret;
         Socket.removeListener('token_get');
       });
       Socket.emit('token_get');
-      // $http.get('/api/authenticators/qrcode')
-      //   .success(function (res) {
-      //     vm.qrcode = res.qrcode;
-      //     vm.secret = res.secret;
-      //   })
-      //   .error(function (err) {
-      //     console.log(err);
-      //   });
     };
     vm.handleVerifyToken = function () {
       Socket.on('token_verify', function (res) {
@@ -45,13 +40,6 @@
         Socket.removeListener('token_verify');
       });
       Socket.emit('token_verify', { token: vm.tokenValid, secret: vm.secret });
-      // $http.post('/api/authenticators/verify', { token: vm.tokenValid, secret: vm.secret })
-      //   .success(function (res) {
-      //     vm.verified = res;
-      //   })
-      //   .error(function (err) {
-      //     console.log(err);
-      //   });
     };
     vm.handleStartGetToken = function () {
       Socket.on('token', function (res) {
