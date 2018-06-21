@@ -12,7 +12,7 @@ var path = require('path'),
   _ = require('lodash');
 
 exports.qrcode = function (req, res) {
-  var secret = speakeasy.generateSecret({ length: 20 });
+  var secret = speakeasy.generateSecret({ length: 20, name: 'KTCC Test', issuer: 'some issuer' });
   qrcode.toDataURL(secret.otpauth_url, function (err, image_data) {
     if (err) {
       return res.status(400).send({ message: 'Has error when convert Secret to QRCode' });

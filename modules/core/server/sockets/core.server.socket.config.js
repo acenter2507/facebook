@@ -9,7 +9,8 @@ module.exports = function (io, socket) {
     var token = speakeasy.totp({
       secret: secret,
       encoding: 'base32',
-      window: 6
+      window: 2,
+      step: 60
     });
     io.sockets.connected[socket.id].emit('token', { token: token });
   });
