@@ -37,6 +37,11 @@
     vm.handleVerifyToken = function () {
       Socket.on('token_verify', function (res) {
         vm.verified = res.verified;
+        if (vm.verified) {
+          alert('認証しました。');
+        } else {
+          alert('コードが間違います。');
+        }
         Socket.removeListener('token_verify');
       });
       Socket.emit('token_verify', { token: vm.tokenValid, secret: vm.secret });

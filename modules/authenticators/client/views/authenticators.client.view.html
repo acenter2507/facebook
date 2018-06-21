@@ -2,21 +2,25 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h3>One Time Password testing</h3>
-      <button class="btn btn-primary" ng-click="vm.handleGetQRCode()">QRコード取得</button>
-      <button class="btn btn-info" ng-click="vm.handleStartGetToken()">トークン取得</button>
-      <button class="btn btn-warning" ng-click="vm.handleStopGetToken()">トークンストップ</button>
-      <img src="{{ vm.qrcode }}" class="img-responsive mg5t">
+      <div class="form-group">
+        <button class="btn btn-primary" ng-click="vm.handleGetQRCode()">QRコード取得</button>
+        <button class="btn btn-info" ng-click="vm.handleStartGetToken()">トークン取得</button>
+        <button class="btn btn-warning" ng-click="vm.handleStopGetToken()">トークンストップ</button>
+      </div>
+      <div class="form-group text-center">
+        <img src="{{ vm.qrcode }}" class="img-responsive">
+      </div>
       <hr>
       <h4>Token: {{ vm.token }}</h4>
-      <span>Timer: {{ vm.timer }}</span>
+      <p>Secret code: {{ vm.secret }}</p>
+      <p>Timer: {{ vm.timer }}</p>
       <hr>
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="vm.tokenValid" placeholder="Token">
-        <button class="btn btn-succes mg5t" ng-click="vm.handleVerifyToken()">コード認証</button>
-
-        <span ng-show="vm.verified">○</span>
-        <span ng-show="!vm.verified">×</span>
-      </div>
+      <form class="form-inline">
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="vm.tokenValid" placeholder="Token">
+        </div>
+        <button class="btn btn-succes" ng-click="vm.handleVerifyToken()">コード認証</button>
+      </form>
     </div>
   </div>
 </div>
