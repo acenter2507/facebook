@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = require('lodash');
+var _ = require('lodash');
 var speakeasy = require('speakeasy');
 // Create the chat configuration
 module.exports = function (io, socket) {
