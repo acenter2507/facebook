@@ -64,6 +64,8 @@
       if (vm.interval) {
         $interval.cancel(vm.interval);
       }
+      vm.timer = 0;
+      vm.token = '';
     }
     function handleStartTrankingToken() {
     }
