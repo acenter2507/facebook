@@ -16,6 +16,7 @@
     vm.handleGetQRCode = function () {
       $http.get('/api/authenticators/qrcode')
         .success(function (res) {
+          console.log(res);
           vm.qrcode = res.qrcode;
           vm.secret = res.secret;
         })
