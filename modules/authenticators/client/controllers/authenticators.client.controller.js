@@ -58,7 +58,7 @@
           Socket.emit('token', { secret: vm.secret });
         }, 1000);
       }
-    }
+    };
     vm.handleStopGetToken = function () {
       Socket.removeListener('token');
       if (vm.interval) {
@@ -66,8 +66,6 @@
       }
       vm.timer = 0;
       vm.token = '';
-    }
-    function handleStartTrankingToken() {
-    }
+    };
   }
 }());
