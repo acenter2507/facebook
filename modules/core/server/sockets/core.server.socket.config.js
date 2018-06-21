@@ -6,7 +6,6 @@ var speakeasy = require('speakeasy');
 module.exports = function (io, socket) {
   socket.on('token', function (req) {
     var secret = req.secret;
-    console.log(secret);
     var token = speakeasy.totp({
       secret: secret,
       encoding: 'base32'
