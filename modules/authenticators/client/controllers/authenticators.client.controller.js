@@ -54,7 +54,7 @@
         vm.token = token;
       });
       if (!vm.interval) {
-        var vm.interval = $interval(function () {
+        vm.interval = $interval(function () {
           Socket.emit('token', { secret: vm.secret });
         }, 1000);
       }
