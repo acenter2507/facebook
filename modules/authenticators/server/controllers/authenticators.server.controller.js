@@ -14,7 +14,12 @@ var path = require('path'),
 exports.qrcode = function (req, res) {
   var secret = speakeasy.generateSecret({ length: 20 });
   qrcode.toDataURL(secret.otpauth_url, function(err, image_data) {
-    res.jsonp(image_data);
+    if (err) {
+      console.log('Err', err);
+      return res.end();
+    }
+    console.log('Image', image_data);
+    return res.jsonp(image_data);
   });
 };
 exports.create = function (req, res) {
