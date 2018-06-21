@@ -21,16 +21,6 @@
       if (!Socket.socket) {
         Socket.connect();
       }
-      Socket.on('token', function (res) {
-        console.log(res);
-        var token = res.token;
-        if (token !== vm.token) {
-          vm.timer = 1;
-        } else {
-          vm.timer += 1;
-        }
-        vm.token = token;
-      });
     }
 
     vm.handleGetQRCode = function () {
@@ -38,7 +28,6 @@
         .success(function (res) {
           vm.qrcode = res.qrcode;
           vm.secret = res.secret;
-          handleStartTrankingToken();
         })
         .error(function (err) {
           console.log(err);
@@ -53,10 +42,30 @@
           console.log(err);
         });
     };
+    vm.handleStartGetToken = function () {
+      Socket.on('token', function (res) {
+        console.log(res);
+        var token = res.token;
+        if (token !== vm.token) {
+          vm.timer = 1;
+        } else {
+          vm.timer += 1;
+        }
+        vm.token = token;
+      });
+      if (!vm.interval) {
+        var vm.interval = $interval(function () {
+          Socket.emit('token', { secret: vm.secret });
+        }, 1000);
+      }
+    }
+    vm.handleStopGetToken = function () {
+      Socket.removeListener('token');
+      if (vm.interval) {
+        $interval.cancel(vm.interval);
+      }
+    }
     function handleStartTrankingToken() {
-      var interval = $interval(function () {
-        Socket.emit('token', { secret: vm.secret });
-      }, 1000);
     }
   }
 }());
