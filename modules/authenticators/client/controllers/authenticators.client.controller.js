@@ -16,6 +16,12 @@
     vm.timer = 0;
     vm.verified = false;
 
+    onCreate();
+    function onCreate() {
+      if (!Socket.socket) {
+        Socket.connect();
+      }
+    }
 
     vm.handleGetQRCode = function () {
       $http.get('/api/authenticators/qrcode')
