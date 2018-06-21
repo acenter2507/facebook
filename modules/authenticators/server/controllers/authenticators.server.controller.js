@@ -13,8 +13,9 @@ var path = require('path'),
 
 exports.qrcode = function (req, res) {
   var secret = speakeasy.generateSecret({ length: 20 });
-  console.log(secret.base32);
-  res.end();
+  qrcode.toDataURL(secret.otpauth_url, function(err, image_data) {
+    res.jsonp(image_data);
+  });
 };
 exports.create = function (req, res) {
   var authenticator = new Authenticator(req.body);
