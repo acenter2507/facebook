@@ -36,7 +36,7 @@
     };
     vm.handleVerifyToken = function () {
       if (!vm.tokenValid || vm.tokenValid === '') return;
-      if (!vm.secret || vm.secret === '') return;
+      if (!vm.secret || vm.secret === '') return alert('QRコードを取得してください！');
       Socket.on('token_verify', function (res) {
         vm.verified = res.verified;
         if (vm.verified) {
@@ -49,7 +49,7 @@
       Socket.emit('token_verify', { token: vm.tokenValid, secret: vm.secret });
     };
     vm.handleStartGetToken = function () {
-      if (!vm.secret || vm.secret === '') return;
+      if (!vm.secret || vm.secret === '') return alert('QRコードを取得してください！');
       Socket.on('token', function (res) {
         var token = res.token;
         if (token !== vm.token) {
